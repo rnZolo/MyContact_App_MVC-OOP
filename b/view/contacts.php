@@ -23,25 +23,7 @@
                 <button type="submit" name="add_btn" class="btn bg-green-500 hover:bg-green-800 text-white absolute right-4 top-4">Add +</button>
             </form>
 
-            <form action="<?php $_SERVER['PHP_SELF'];?>" method="post" class="h-fit relative">
-                <div class="flex gap-6 relative">
-                    <input type="text" placeholder="Search here" class="input input-bordered input-primary w-fit min-w-[300px] max-w-xs" />
-                    <select class="select select-primary w-fit max-w-xs">
-                        <option disabled selected>Order by</option>
-                        <?php 
-                            // while($row = $list_cols->fetch_assoc()){
-                            //     echo '<option class="text-white" value ="'.$row["COLUMN_NAME"].'">'.$row["COLUMN_NAME"].'</option>';
-                            // }
-                        ?>
-                    </select>
-                    <select class="select select-primary w-fit max-w-xs">
-                        <option disabled selected>Sort by</option>
-                        <option value="ASC">ASC</option>
-                        <option value="DESC">DESC</option>
-                    </select>
-                        <button type="submit" name="add_btn" class="btn bg-violet-800 hover:bg-violet-600 text-white">Filter</button>
-                </div>
-            </form> 
+            </form>
             <thead >
                 <tr class="bg-zinc-900">
                     <th class="text-2xl text-white text-center">NO.</th>

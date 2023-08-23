@@ -59,7 +59,6 @@
             public function get_specific_contact($ar){
                 $ar = self::dec($ar);
                 $details = $this->select_where_contact([$ar]);
-              
                 if($details->num_rows == 1 ){
                     $detail =  $details->fetch_assoc();
                     $up_nm = $detail['contact_name'];
@@ -73,7 +72,7 @@
             }
 
             public function change_details($ar, $id){
-                
+               
                 if(!self::valid_inputs($ar)){
                     $id = 'location: ?update='.$id.'&upstatus=failed';
                     header($id);
@@ -81,33 +80,29 @@
                 }else{
                     $id = self::dec($id);
                     $ar = self::format_contact_details($ar);
-                    $details = $this->select_where_contact([$id]);
-                        if($details->num_rows == 1 ){
-                            array_push($ar, $id);
-                            $up_status = $this->update_this_contact($ar);  
-                            if(!$up_status){
-                                header('location: ?upstatus=success');
-                                exit();
-                            }
-                            // header('location: ?upstatus=failed');
+                    array_push($ar, $id);
+                    
+                    $up_status = $this->update_this_contact($ar);
+                    echo "is success ". var_dump($up_status);
+                    // exit();  
+                    if(!$up_status){
+                        header('location: ?upstatus=success');
+                        exit();
                     }
+                    // header('location: ?upstatus=failed');
                 }
-              
                 exit();    
             }
 
             public function delete_contact($id){
                 [$id] = $id;
                 $id = self::dec($id);
-                $details = $this->select_where_contact([$id]);
-                if($details->num_rows == 1 ){
-                    $del_status = $this->delete_where([$id]);
+                $del_status = $this->delete_where([$id]);
 
-                    if(!$del_status){
-                       header('location: ?delstatus=success');
-                    }
-                    exit();
+                if(!$del_status){
+                   header('location: ?delstatus=success');
                 }
+                exit();
             }
 
             private function valid_inputs($ar){

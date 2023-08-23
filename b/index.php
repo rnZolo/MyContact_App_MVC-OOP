@@ -33,6 +33,7 @@
         }elseif(isset($_GET['update'])){ // handle Update Contact
             $edit_contact = new Controller_Contacts(); 
             $contact_id =  $_GET['update'];
+            
             $edit_contact->get_specific_contact($contact_id);
             
             if(isset($_POST['update_contact'])){
