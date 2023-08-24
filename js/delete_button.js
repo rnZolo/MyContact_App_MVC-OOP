@@ -1,3 +1,4 @@
+    
     $('.delBtn').click(function(){
         let i =   $('.delBtn').index(this); // clicked
 

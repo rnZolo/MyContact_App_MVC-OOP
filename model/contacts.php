@@ -1,4 +1,5 @@
 <?php
+
     class Model_Contacts extends Model_Conn {
         private const q_all = "SELECT * FROM  contact_table";
 
@@ -17,12 +18,21 @@
             return $result;
         }
 
-        protected function select_where_contact($ar){
+        protected function select_where_id($ar){
             $search_id = "SELECT contact_name, contact_nickname,
             contact_number FROM  contact_table WHERE contact_id = ? ";
             $x = 's';
             $result = $this->prepared($search_id, $x, $ar);
 
+            return $result;
+        }
+
+        protected function select_where_name($search){
+            $search_id = "SELECT contact_name, contact_nickname,
+            contact_number FROM  contact_table WHERE contact_name = '$search' ";
+
+            $result = $this->query($search_id);
+          
             return $result;
         }
 
@@ -48,5 +58,7 @@
             $list_cols = $up_status = $this->query($cols);
             return $list_cols;
         }
+
     }
+
 ?>

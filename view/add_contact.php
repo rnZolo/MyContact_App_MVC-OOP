@@ -3,14 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script src="./index.js" defer></script>
+        <?php
+            include_once './php/links_scripts.inc.php';
+        ?>
+        
         <title>My Contact</title>
     </head>
     <body class=" w-full h-fit min-h-screen flex flex-col justify-start place-items-center text-xl p-[5%] pt-[10%] relative" >

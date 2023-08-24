@@ -3,46 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script src="./js/delete_button.js" defer></script>
+        <?php
+            include_once './php/links_scripts.inc.php';
+        ?>
+
         <title>My Contact</title>
 
     </head>
     <body class=" w-full h-fit min-h-screen flex flex-col justify-start gap-8 text-xl p-[5%] pt-[10%] relative" >
-        <table  class="table table-zebra max-w-[100%] text-lg text-white">
+        <table  class="table table-zebra max-w-[100%] text-lg text-white ">
                 <?php
                     include_once './php/response.inc.php'
                 ?>
             <form action="<?php $_SERVER['PHP_SELF'];?>" method="post" class="relative">
                 <button type="submit" name="add_btn" class="btn bg-green-500 hover:bg-green-800 text-white absolute right-4 top-4">Add +</button>
             </form>
-
-            <form action="<?php $_SERVER['PHP_SELF'];?>" method="post" class="h-fit relative">
-                <div class="flex gap-6 relative">
-                    <input type="text" placeholder="Search here" class="input input-bordered input-primary w-fit min-w-[300px] max-w-xs" />
-                    <select class="select select-primary w-fit max-w-xs">
-                        <option disabled selected>Order by</option>
-                        <?php 
-                            // while($row = $list_cols->fetch_assoc()){
-                            //     echo '<option class="text-white" value ="'.$row["COLUMN_NAME"].'">'.$row["COLUMN_NAME"].'</option>';
-                            // }
-                        ?>
-                    </select>
-                    <select class="select select-primary w-fit max-w-xs">
-                        <option disabled selected>Sort by</option>
-                        <option value="ASC">ASC</option>
-                        <option value="DESC">DESC</option>
-                    </select>
-                        <button type="submit" name="add_btn" class="btn bg-violet-800 hover:bg-violet-600 text-white">Filter</button>
-                </div>
+            <div class="w-full flex justify-start gap-3">
+            <form  action="<?php $_SERVER['PHP_SELF'];?>" method="post" id="search" class="flex fle-wrap h-fit relative">
+                    <input type="text" placeholder="Search here" name="search" id="s_val" class="input input-bordered input-primary w-fit min-w-[300px] max-w-fit" />
+                        <button type="submit" name="search_btn" id="search_btn" class="max-w-[100px] btn bg-violet-800 hover:bg-violet-600 text-white">Search</button>
+                        <a href="." class="max-w-[100px] btn bg-violet-800 hover:bg-violet-600 text-white"><i class="bi bi-arrow-clockwise"></i></a>
             </form> 
+            </div>
             <thead >
+            <span class="page ml-auto"></span>
                 <tr class="bg-zinc-900">
                     <th class="text-2xl text-white text-center">NO.</th>
                     <th class="text-2xl text-white text-center">Name</th>
@@ -51,17 +35,17 @@
                     <th class="text-2xl text-white text-center">Action</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody class="">
                 <?php
                     $count = 1;
                     while($row = $datas->fetch_assoc()){
                         $i = self::inc($row['contact_id']);
-                        echo '<tr class="w-full">
-                                <th class="text-center">'.$count.'</th>
-                                <td class="text-left">'.$row['contact_name'].'</td>
-                                <td class="text-center">'.$row['contact_nickname'].'</td>
-                                <td class="text-center">'.$row['contact_number'].'</td>
-                                <td class=" text-center flex gap-3 justify-center">
+                        echo '<tr class="data w-full h-[100px] max-h-[100px]">
+                                <th class="text-center  h-[100px] max-h-[100px]">'.$count.'</th>
+                                <td class="text-left  h-[100px] max-h-[100px]">'.$row['contact_name'].'</td>
+                                <td class="text-center  h-[100px] max-h-[100px]">'.$row['contact_nickname'].'</td>
+                                <td class="text-center  h-[100px] max-h-[100px]">'.$row['contact_number'].'</td>
+                                <td class=" text-center flex gap-3 justify-center  h-[100px] max-h-[100px]">
                                 <a href="?update='.$i.'" class="btn w-fit bg-yellow-600 hover:bg-yellow-800 text-white" >Update</a>
                                 <span class="delBtn btn bg-red-600 hover:bg-red-800 text-white">DELETE</span>
                                 <div class"confirm flex gap-6 relative m-1" style="display: none;">
@@ -75,7 +59,8 @@
                     self::disconnect();
                 ?>
             </tbody>
+           
         </table>
-
+        
     </body>
 </html>

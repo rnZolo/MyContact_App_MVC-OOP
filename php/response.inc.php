@@ -15,6 +15,28 @@
                 background: 'green',
             }
             }).showToast();</script>";
+    }elseif(isset($_GET['contact']) && $_GET['contact'] == 'found'){
+        echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
+        <script> 
+        Toastify({
+            text: 'Contact found',
+            className: 'info',
+            style: {
+                background: 'green',
+            }
+            }).showToast();
+        </script>";
+    }elseif(isset($_GET['contact']) && $_GET['contact'] == 'notfound'){
+        echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
+        <script> 
+        Toastify({
+            text: 'Contact Not Found',
+            className: 'info',
+            style: {
+                background: 'red',
+            }
+            }).showToast();
+        </script>";
     }elseif (isset($_GET['contact']) && $_GET['contact'] == 'invalid') {
         echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
         <script> 
@@ -55,13 +77,7 @@
                     background: 'green',
                 }
                 }).showToast();
-               
-                setTimeout(function(){
-                    intoIndex()}, 2000);
-                
-            function intoIndex(){  
-                window.location.href = './index.php';
-            }
+    
             </script>";
     }elseif ((isset($par['upstatus']) && $par['upstatus'] == 'failed')) {
             echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
@@ -107,12 +123,6 @@
                 }
                 }).showToast();
                
-                setTimeout(function(){
-                    intoIndex()}, 2000);
-                
-            function intoIndex(){  
-                window.location.href = './index.php';
-            }
             </script>";
     }elseif(isset($_GET['delstatus']) && $_GET['delstatus'] == 'faileds'){
         echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
@@ -125,13 +135,28 @@
                 }
                 }).showToast();
                
-                setTimeout(function(){
-                    intoIndex()}, 2000);
-                
-            function intoIndex(){  
-                window.location.href = './index.php';
-            }
+            </script>";
+    }elseif(isset($_GET['search']) && $_GET['search'] == 'empty'){
+        echo "<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
+            <script> 
+            Toastify({
+                text: 'Searching with Empty',
+                className: 'info',
+                style: {
+                    background: 'red',
+                }
+                }).showToast();
+               
             </script>";
     }
 
 ?>
+
+
+
+<!-- setTimeout(function(){
+                    intoIndex()}, 2000);
+                
+            function intoIndex(){  
+                window.location.href = './index.php';
+            } -->

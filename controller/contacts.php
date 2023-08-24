@@ -5,12 +5,6 @@
             private const options = 0;
             private const ed_iv = '1234567891011121';
             private const ed_key = "rnzolo";
-            // public $realname;
-            // public $nickname;
-            // public $number;
-
-            // public function __construct( string $realname,  string $nickname,
-            //                      string $number){}
 
             public function inc($id){
                 $iv_length = openssl_cipher_iv_length(self::ciphering);
@@ -58,7 +52,7 @@
             
             public function get_specific_contact($ar){
                 $ar = self::dec($ar);
-                $details = $this->select_where_contact([$ar]);
+                $details = $this->select_where_id([$ar]);
               
                 if($details->num_rows == 1 ){
                     $detail =  $details->fetch_assoc();
@@ -81,8 +75,8 @@
                 }else{
                     $id = self::dec($id);
                     $ar = self::format_contact_details($ar);
-                    $details = $this->select_where_contact([$id]);
-                        if($details->num_rows == 1 ){
+                    $details = $this->select_where_name($id);
+
                             array_push($ar, $id);
                             $up_status = $this->update_this_contact($ar);  
                             if(!$up_status){
@@ -90,7 +84,7 @@
                                 exit();
                             }
                             // header('location: ?upstatus=failed');
-                    }
+
                 }
               
                 exit();    
@@ -99,15 +93,30 @@
             public function delete_contact($id){
                 [$id] = $id;
                 $id = self::dec($id);
-                $details = $this->select_where_contact([$id]);
-                if($details->num_rows == 1 ){
+                
+                $details = $this->select_where_id([$id]);
+                if($details->num_rows >= 1 ){
                     $del_status = $this->delete_where([$id]);
 
                     if(!$del_status){
-                       header('location: ?delstatus=success');
+                        header('location: ?delstatus=success');
                     }
-                    exit();
+                }else{ // prevent url deleting
+                    header('location: .');
                 }
+            }
+
+            public function search_contact($s){
+                if(empty(!$s)){
+                    $datas = $this->select_where_name($s);
+                $data = $datas->fetch_assoc();
+                if (is_null($data)){
+                    return header('location: ?contact=notfound');
+                }
+                header('location: ?contact=found');
+                return $data;
+                }
+                header('location: ?search=empty');
             }
 
             private function valid_inputs($ar){

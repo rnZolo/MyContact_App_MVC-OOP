@@ -13,9 +13,10 @@
 
         private function connect(){  
             if($this->conn->connect_error){
+
                 die($this->conn);
-               
             }else{
+
                 return $this->conn;
             }
         }
@@ -30,12 +31,13 @@
             $prep = $this->conn->prepare($q);
             $prep->bind_param($x, ...$p);
             $prep->execute();
-            $result = $prep->get_result(); //false if failed else rsult set 
-   
+            $result = $prep->get_result(); 
+
             return $result;
         }
 
         public function disconnect(){
+            
             return $this->conn->close();
         } 
         

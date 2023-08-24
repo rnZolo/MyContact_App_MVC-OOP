@@ -6,6 +6,4 @@
         function dec($id);
     }
 
-
-
 ?>
